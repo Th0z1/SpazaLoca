@@ -1,4 +1,23 @@
 page-login {
+  #back{
+    position: absolute;
+    background: url('../../assets/imgs/screen.svg') no-repeat top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    
+  }
+  #list{
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    margin-top: 20%;
+  }
     #pg{
         text-align:center;
      }
