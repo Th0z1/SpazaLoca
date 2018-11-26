@@ -1,20 +1,56 @@
 page-slides {
-    font-family: 'Ranga', cursive;
+  
+    
     #body{
-        background: #00d2ff;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #3a7bd5, #00d2ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        // background: #DE6262;  /* fallback for old browsers */
+        // background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+        // background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #f2709c;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #ff9472, #f2709c);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #ff9472, #f2709c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        
         
     
     }
     h2{
         font-size: 40pt;
+        font-family: 'Ranga', cursive;
         text-align: center;
+        color: white;
     }
     #slide1{
         margin-bottom: 10%;
         text-align: center;
         
     }
-    
+    .map-slide{
+        width: 40%;
+        height: 40%;
+    }
+    .shop-slide{
+        width: 20%;
+        height: 20%;
+    }
+    .checklist{
+        width: 40%;
+        height: 40%;
+    }
+    .app-name{
+        margin-top: -5%;
+    }
+    p{
+        padding: 10px 10px;
+        color: white;
+        
+    }
+    #explore-btn{
+        position: absolute;
+        bottom: 50px;
+        width: 180px;
+        left: 50%;
+        transform: translate(-50%);
+        color: white;
+        z-index: 99;
+    }
 }

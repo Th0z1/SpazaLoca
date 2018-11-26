@@ -15,23 +15,23 @@
 
   <ion-slides pager>
 
+    
+
     <ion-slide id="slide1">
-      <img src="../../assets/imgs/uuuu.png">
-      <h2>SpazaLoca</h2>
-      <p style="font-family: 'Raleway'">Welcome to SpazaLoca</p>
+      <img src="../../assets/imgs/shop.svg" class="shop-slide">
+      <h2 class="app-name">SpazaLoca</h2>
+      <p ion-text></p>
     </ion-slide>
-  
-    <ion-slide >
-        <img src="../../assets/imgs/street-map-2679271_640.jpg">
-      <p style="font-family: 'Raleway'">Looking for the nearest spaza shop from where you are currently are? This a platform that helps you locate the nearest spaza shop from where you are searching the shop with their names or address.</p>
-    </ion-slide>
-  
     <ion-slide>
-        <img src="../../assets/imgs/map-1272165_640.png">
-      <p style="font-family: 'Raleway'">You can even send a spaza shop location to a friend.</p>
-      <button ion-button outline color="dark" (click)="main()" style="font-family: 'Raleway'; color: black">Explore</button>
+      <img src="../../assets/imgs/map.svg" class="map-slide">
+    <p ion-text>Find local shops near you and get directions</p>
+    
+  </ion-slide>
+    <ion-slide >
+        <img src="../../assets/imgs/checklist2.svg" class="checklist">
+      <p ion-text>check if the items you want are available before you visit the shop</p>
     </ion-slide>
   
   </ion-slides>
-
+  <button ion-button outline color="light" (click)="main()" id="explore-btn">GET STARTED</button>
 </ion-content>
