@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>signUp</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+   
+        <h3>REGISTER</h3>
+      
+          <h6>Please fill in this form to create an account.</h6>
+        
+        <form [formGroup]="spazaShop"> 
+      
+          <ion-item>
+          
+              <ion-input type="text" formControlName="name" placeholder="Name"></ion-input>
+             </ion-item>
+             <div *ngIf="spazaShop.controls.name.invalid && spazaShop.controls.name.dirty">  
+             </div>
+             <div class="error" *ngIf="spazaShop.get('name').hasError('minlength') && spazaShop.get('name').touched">
+                Minimum 4 characters
+              </div>
+              <div class="error" *ngIf="spazaShop.get('name').hasError('maxlength') && spazaShop.get('name').touched">
+                  Maximum 30 characters
+                </div>
+          
+              <ion-item>
+               <ion-input type="text" formControlName="surname" placeholder="Surname" ></ion-input>
+                 </ion-item>
+                 <div *ngIf="spazaShop.controls.surname.invalid && spazaShop.controls.surname.dirty">
+                 </div>
+                 <div class="error" *ngIf="spazaShop.get('surname').hasError('minlength') && spazaShop.get('surname').touched">
+                    Minimum 4 characters
+                  </div>
+                  <div class="error" *ngIf="spazaShop.get('surname').hasError('maxlength') && spazaShop.get('surname').touched">
+                      Maximum 30 characters
+                    </div>
+      
+                 <ion-item>
+                    <ion-input type="text" formControlName="gender" placeholder="Gender"></ion-input>
+                      </ion-item>
+                   
+                      <div *ngIf="spazaShop.controls.gender.invalid && spazaShop.controls.gender.dirty">
+                      </div> 
+               
+                 <ion-item>
+                   <ion-input type="text" formControlName="Email" placeholder="Email"></ion-input>
+                     </ion-item>
+                     <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
+                     </div> 
+                     <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
+                      Please input your email
+                    </div>
+                    <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
+                      Email address invalid
+                    </div>
+      
+                     <ion-item>
+                      <ion-input type="text" formControlName="password" placeholder="Password"></ion-input>
+                        </ion-item>
+                        <div *ngIf="spazaShop.controls.password.invalid && spazaShop.controls.password.dirty">
+                        </div> 
+      
+                        <div class="error" *ngIf="spazaShop.get('password').hasError('required') && spazaShop.get('password').touched">
+                          Please input your password
+                        </div>
+      
+                        <div class="error" *ngIf="spazaShop.get('password').hasError('minlength') && spazaShop.get('password').touched">
+                          Minimum 6 characters
+                        </div>
+      
+                        <div class="error" *ngIf="spazaShop.get('password').hasError('maxlength') && spazaShop.get('password').touched">
+                          Maximum 12 characters
+                        </div>
+                  
+                 </form><br><br>
+                <ion-grid >
+                 <ion-row>
+                 <ion-col col-8 col-sm><button ion-button round color="pink" (click)=register(spazaShop)>REGISTER</button></ion-col>
+                 <ion-col col-4 col-sm><button ion-button  round color="pink" (click)=signIn()>SIGN-IN</button></ion-col>
+                </ion-row> 
+                </ion-grid>
+      
+</ion-content>

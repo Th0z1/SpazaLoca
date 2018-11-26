@@ -32,6 +32,19 @@
 </head>
 <body>
 
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAosPlPpr_9f3pHPtfEFJTQRJtY3Mz4WMM",
+      authDomain: "spazalocation.firebaseapp.com",
+      databaseURL: "https://spazalocation.firebaseio.com",
+      projectId: "spazalocation",
+      storageBucket: "spazalocation.appspot.com",
+      messagingSenderId: "476030295128"
+    };
+    firebase.initializeApp(config);
+  </script>
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
 

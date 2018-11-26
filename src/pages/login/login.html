@@ -1,48 +1,44 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-
-  <ion-navbar>
-    <ion-title></ion-title>
-  </ion-navbar>
-
-</ion-header> -->
-
-
-<ion-content id="back" padding>
- 
-
+<ion-content padding>
   <div class="ic">
     <h2 class="login-h2">Login</h2>
     <ion-icon ios="ios-person" md="md-person"></ion-icon>
   </div>
-  
-  
-  <ion-list id="list">
-
+  <br>
+  <br>
+  <br>
+ <form [formGroup]="spazaShop"> 
     <ion-item>
       <ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>
       <ion-label stacked>Username</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text"  formControlName="Email"></ion-input>
     </ion-item>
-
+    <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
+      </div> 
+      <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
+        Please input your email
+        </div>
+        <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
+            Email address invalid
+          </div>
+         
     <ion-item>
       <ion-icon ios="ios-key" md="md-key" item-start></ion-icon>
       <ion-label stacked>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password"  formControlName="password"></ion-input>
     </ion-item>
-    <button ion-button class="login-button" color="dark" outline  >
-        <!-- <ion-icon name='paw' is-active="false"></ion-icon> -->
-        Log In
-      </button>
-      <p class="signup-p">Don't have an account?<button ion-button clear item-start>Sign Up</button></p>
-      <button ion-button class="login-button signup" color="dark" outline  >
-          <!-- <ion-icon name='paw' is-active="false"></ion-icon> -->
-          Sign in with Google 
-        </button>
-  </ion-list>
+    <div *ngIf="spazaShop.controls.password.invalid && spazaShop.controls.password.dirty">
+      </div>
+      <div class="error" *ngIf="spazaShop.get('password').hasError('required') && spazaShop.get('password').touched">
+          Please input your password
+        </div>
+        <div class="error" *ngIf="spazaShop.get('password').hasError('minlength') && spazaShop.get('password').touched">
+          Minimum 6 characters
+        </div>
+        <div class="error" *ngIf="spazaShop.get('password').hasError('maxlength') && spazaShop.get('password').touched">
+          Maximum 12 characters
+        </div>
+</form>
+      <button ion-button class="login-button" color="dark" (click)="login(spazaShop)" outline>Log In</button>
+     <p class="signup-p">Don't have an account?<a (click)="signup(spazaShop)" >Sign Up</a></p>
+      <button ion-button class="login-button signup" color="dark" outline>Sign in with Google </button>
 </ion-content>
