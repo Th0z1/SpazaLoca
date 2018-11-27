@@ -1,44 +1,63 @@
-<ion-content padding>
-  <div class="ic">
-    <h2 class="login-h2">Login</h2>
-    <ion-icon ios="ios-person" md="md-person"></ion-icon>
-  </div>
-  <br>
-  <br>
-  <br>
- <form [formGroup]="spazaShop"> 
-    <ion-item>
-      <ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>
-      <ion-label stacked>Username</ion-label>
-      <ion-input type="text"  formControlName="Email"></ion-input>
-    </ion-item>
-    <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
-      </div> 
-      <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
-        Please input your email
-        </div>
-        <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
-            Email address invalid
-          </div>
+
+<ion-header>
+    <link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
+
+  </ion-header> 
+<ion-content id="back" padding>
+    <div id="spz">
          
-    <ion-item>
-      <ion-icon ios="ios-key" md="md-key" item-start></ion-icon>
-      <ion-label stacked>Password</ion-label>
-      <ion-input type="password"  formControlName="password"></ion-input>
-    </ion-item>
-    <div *ngIf="spazaShop.controls.password.invalid && spazaShop.controls.password.dirty">
-      </div>
-      <div class="error" *ngIf="spazaShop.get('password').hasError('required') && spazaShop.get('password').touched">
-          Please input your password
+        <h2 class="app-name">SpazaLoca</h2>
+       <b> <p ion-text text-center>Welcome!</p></b>
+    </div>
+  
+    <div id="form">
+        <form [formGroup]="spazaShop" style="width: 90%;"> 
+  
+            <ion-item>
+              <ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>
+              <ion-label stacked>Username</ion-label>
+              <ion-input type="text"  formControlName="Email"></ion-input>
+            </ion-item>
+            <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
+              </div> 
+              <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
+                Please input your email
+                </div>
+                <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
+                    Email address invalid
+                  </div>
+                 
+            <ion-item>
+              <ion-icon ios="ios-key" md="md-key" item-start></ion-icon>
+              <ion-label stacked>Password</ion-label>
+              <ion-input type="password"  formControlName="password"></ion-input>
+            </ion-item>
+        
+            <div *ngIf="spazaShop.controls.password.invalid && spazaShop.controls.password.dirty">
+              </div>
+              <div class="error" *ngIf="spazaShop.get('password').hasError('required') && spazaShop.get('password').touched">
+                  Please input your password
+                </div>
+                <div class="error" *ngIf="spazaShop.get('password').hasError('minlength') && spazaShop.get('password').touched">
+                  Minimum 6 characters
+                </div>
+                <div class="error" *ngIf="spazaShop.get('password').hasError('maxlength') && spazaShop.get('password').touched">
+                  Maximum 12 characters
+                </div>
+             
+        </form>
+        <div id="btns">
+          <button ion-button class="login-button" color="dark" (click)="login(spazaShop)" outline>Log In</button>
+             <p class="signup-p">Don't have an account?  <a (click)="signup(spazaShop)" id="up">Sign Up</a></p>
+              <button ion-button class="login-button signup" color="dark" outline>Sign in with Google </button>
+        
         </div>
-        <div class="error" *ngIf="spazaShop.get('password').hasError('minlength') && spazaShop.get('password').touched">
-          Minimum 6 characters
-        </div>
-        <div class="error" *ngIf="spazaShop.get('password').hasError('maxlength') && spazaShop.get('password').touched">
-          Maximum 12 characters
-        </div>
-</form>
-      <button ion-button class="login-button" color="dark" (click)="login(spazaShop)" outline>Log In</button>
-     <p class="signup-p">Don't have an account?<a (click)="signup(spazaShop)" >Sign Up</a></p>
-      <button ion-button class="login-button signup" color="dark" outline>Sign in with Google </button>
+              
+
+    </div>
+ 
+   
+      
+ 
+
 </ion-content>

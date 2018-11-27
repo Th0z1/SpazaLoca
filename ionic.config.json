@@ -1,5 +1,7 @@
 {
   "name": "spazaloca",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

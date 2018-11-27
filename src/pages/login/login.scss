@@ -11,13 +11,7 @@ page-login {
     height: 100vh;
     
   }
-  #list{
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    margin-top: 20%;
-  }
+  
     #pg{
         text-align:center;
      }
@@ -71,9 +65,7 @@ page-login {
      .error{
         color: brown;
      }
-     ion-content{
-        
-     }
+    
      login-h2{
        margin-bottom: 10%;
      }
@@ -87,9 +79,26 @@ page-login {
        margin-left: 10%;
      }
      .signup{
-         margin-top: -5%;
+         margin-top: -1%;
      }
      .signup-p{
         margin-left: 20%;
      }
+     #form{
+      position: absolute;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     top: 30%;
+     height: 100vh;
+    }
+    .app-name{
+      font-family: 'Ranga', cursive;
+      font-size: 30pt;
+      text-align: center;
+      margin-bottom:0%;
+  }
+  #spz{
+    margin-top:20%;
+  }
 }

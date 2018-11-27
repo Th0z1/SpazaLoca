@@ -31,12 +31,13 @@ spazaShop:FormGroup;
     //   }
     // );
   }
+
   login({value, valid}:{value:any,valid}){
     console.log(value);
     console.log(value.Email);
     console.log(value.password);
     firebase.auth().signInWithEmailAndPassword(value.Email,value.password).then(user=>{
-    this.navCtrl.push("SlidesPage");
+      this.navCtrl.setRoot('FeedPage');
     
     this.spazaShop.reset();
     });
@@ -45,3 +46,8 @@ signup(spazaShop){
     this.navCtrl.push("SignUpPage");
   }
 }
+
+ 
+
+
+

@@ -1,3 +1,35 @@
 page-sign-up {
-
+    #back{
+        position: absolute;
+        background: url('../../assets/imgs/screen.svg') no-repeat top center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        
+      }
+      #form{
+        position: absolute;
+       bottom: 0;
+       left: 0;
+       right: 0;
+       top: 20%;
+       height: 100vh;
+      }
+     #btn{
+        margin-left: 37%;
+    //  margin-right: 20%;
+    //  padding-left: 6%;
+    //  padding-right: 6%;
+     }
+    
+    .app-name{
+        font-family: 'Ranga', cursive;
+        font-size: 30pt;
+        text-align: center;
+        margin-top: 15%;
+    }
 }
