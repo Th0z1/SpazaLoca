@@ -1,9 +1,9 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="new">
      
     <ion-title text-center>SignUp</ion-title>
   </ion-navbar>
-</ion-header> 
+</ion-header>  -->
 <ion-content id="back" padding>
    
      
@@ -38,12 +38,16 @@
                       </div>
         
                    <ion-item>
-                      <ion-input type="text" formControlName="gender" placeholder="Gender"></ion-input>
-                        </ion-item>
-                     
+                      <ion-label>Gender</ion-label>
+                        <ion-select formControlName="gender">
+                          <ion-option value="male">Male</ion-option>
+                          <ion-option value="female">Female</ion-option>
+                          <ion-option value="transgender">Trans-gender</ion-option>
+                          <ion-option value="other">Other</ion-option>
+                        </ion-select>                                      
                         <div *ngIf="spazaShop.controls.gender.invalid && spazaShop.controls.gender.dirty">
                         </div> 
-                 
+                 </ion-item>
                    <ion-item>
                      <ion-input type="text" formControlName="Email" placeholder="Email"></ion-input>
                        </ion-item>
