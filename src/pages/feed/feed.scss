@@ -1,5 +1,11 @@
 page-feed {
     #mapid {
-        height: 100%; 
+        height: 100%;
+       
+        background-size: cover;
+        width: 100%;
+    }
+    ion-fab{
+        margin-bottom: 50%;
     }
 }

@@ -49,19 +49,19 @@
                         </div> 
                  </ion-item>
                    <ion-item>
-                     <ion-input type="text" formControlName="Email" placeholder="Email"></ion-input>
+                     <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
                        </ion-item>
-                       <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
+                       <div *ngIf="spazaShop.controls.email.invalid && spazaShop.controls.email.dirty">
                        </div> 
-                       <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
+                       <div class="error" *ngIf="spazaShop.get('email').hasError('required') && spazaShop.get('email').touched">
                         Please input your email
                       </div>
-                      <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
+                      <div class="error" *ngIf="spazaShop.get('email').hasError('pattern') && spazaShop.get('email').touched">
                         Email address invalid
                       </div>
         
                        <ion-item>
-                        <ion-input type="text" formControlName="password" placeholder="Password"></ion-input>
+                        <ion-input type="password" formControlName="password" placeholder="Password"></ion-input>
                           </ion-item>
                           <div *ngIf="spazaShop.controls.password.invalid && spazaShop.controls.password.dirty">
                           </div> 
@@ -81,10 +81,8 @@
                    </form><br>
   
                    <div id="btn">
-                      <button ion-button color="dark" outline (click)=register(spazaShop) >REGISTER</button>
+                      <button ion-button color="dark" type="submit" outline (click)=register(spazaShop) [disabled]="spazaShop.invalid">REGISTER</button>
                    </div>
-                   
-                   <!-- <ion-col col-4 col-sm><button ion-button color="dark" outline (click)=signIn()>SIGN-IN</button></ion-col> -->
                   
       </div>
          

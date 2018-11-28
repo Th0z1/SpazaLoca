@@ -14,3 +14,24 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+#back{
+    position: absolute;
+    background: url('../../assets/imgs/screen.svg') no-repeat top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    
+  }
+  .app-name{
+    font-family: 'Ranga', cursive;
+    font-size: 30pt;
+    text-align: center;
+    margin-bottom:0%;
+}
+#spz{
+  margin-top:50%;
+}

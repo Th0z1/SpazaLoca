@@ -101,4 +101,13 @@ page-login {
   #spz{
     margin-top:20%;
   }
+  #flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    button{
+        margin: 20px;
+    }
+ }
 }
