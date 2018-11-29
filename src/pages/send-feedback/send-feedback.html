@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="new">
       <ion-fab top>
           <ion-grid>
             <ion-row>
@@ -29,6 +29,31 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding id="back">
+<ion-list>
+  <ion-item>
+    <ion-icon ios="ios-mail" md="md-mail" item-start></ion-icon>
+    <ion-label stacked>Username</ion-label>
+    <ion-input type="text"  formControlName="Email"></ion-input>
+  </ion-item>
+  <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
+    </div> 
+    <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
+      Please input your email
+      </div>
+      <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
+          Email address invalid
+        </div>
+</ion-list>
+<ion-list>
 
+  <ion-item>
+    <ion-label stacked>Username</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+ 
+
+</ion-list>
+<ion-icon ios="ios-paper-plane" md="md-paper-plane"></ion-icon>
 </ion-content>

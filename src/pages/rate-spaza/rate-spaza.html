@@ -13,9 +13,9 @@
             <ion-row>
               <ion-col col-1>
             
-      <b><button ion-button menuToggle  color="dark" >
+      <button ion-button menuToggle  color="dark" >
           <ion-icon ios="ios-menu" md="md-menu" color="dark"></ion-icon>
-        </button></b>   
+        </button> 
                    
               </ion-col>
               <ion-col>
@@ -32,6 +32,20 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding id="back">
 
 </ion-content>
+<div id="rate">
+  <rating [(ngModel)]="rate" 
+  readOnly="false" 
+  max="5" 
+  emptyStarIconName="star-outline" 
+  halfStarIconName="star-half" 
+  starIconName="star" 
+  nullable="false"
+  (ngModelChange)="onModelChange($event)"></rating>
+
+</div>
+
+   
+  <ion-icon name="paper-plane" id="iconn" (click)="submit()"></ion-icon>

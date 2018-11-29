@@ -21,6 +21,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Back To Search', component: "FeedPage" },
       { title: 'Your Places', component: "YourPlacesPage" },
       { title: 'Send Feedback', component: "SendFeedbackPage" },
       { title: 'Rate Spaza', component: "RateSpazaPage" },
