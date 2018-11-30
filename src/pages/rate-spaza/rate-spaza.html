@@ -33,33 +33,27 @@
 
 
 <ion-content padding id="back">
-<!-- <div id="rate">
-  <rating [(ngModel)]="rate" 
-  readOnly="false" 
-  max="5" 
-  emptyStarIconName="star-outline" 
-  halfStarIconName="star-half" 
-  starIconName="star" 
-  nullable="false"
-  (ngModelChange)="onModelChange($event)"></rating>
-
-</div>  -->
-
-  <!-- <ionic3-star-rating 
-      activeIcon = "ios-star"
-      defaultIcon = "ios-star-outline"
-      activeColor = "#488aff" 
-      defaultColor = "#f4f4f4"
-      readonly="false"
-      [rating]="5">
-  </ionic3-star-rating> -->
+  <div id="all">
+    
+  </div>
+<div id="com">
+    <b><p>Please rate the app and comment if you want to</p></b>
+</div>
   <div id="wrapper">
+    
     <div *ngFor = "let rate of rating; let x = index" >
       <img *ngIf = "rate == 0" (click) = "update(x);" class = "emo" src="../../assets/imgs/happiness.svg"/>
       <img *ngIf = "rate == 1" (click) = "update(x);" class = "emo_dark" src="../../assets/imgs/happiness.svg"/>
     </div>
   </div>
-  
+  <div id="comment">
+    <ion-list>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Comment here..."></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
   
    
   <ion-icon name="paper-plane" id="iconn" (click)="submit()"></ion-icon>

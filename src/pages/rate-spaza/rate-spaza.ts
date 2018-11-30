@@ -42,5 +42,8 @@ export class RateSpazaPage {
       this.rating[i] = 1;
     }
   }
+  submit(){
+    this.navCtrl.push("SlidesPage");
+  }
 
 }
