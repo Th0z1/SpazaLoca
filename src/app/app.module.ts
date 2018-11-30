@@ -3,9 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MyApp } from './app.component';
-import { Ionic2RatingModule } from 'ionic2-rating';
-
-
+import { StarRatingModule } from 'ionic3-star-rating';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    Ionic2RatingModule,
+    StarRatingModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

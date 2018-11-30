@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 /**
  * Generated class for the RateSpazaPage page.
@@ -15,11 +15,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RateSpazaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  rating = [1,1,1,1,1];
+  rate_value ;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public events: Events) {
+    events.subscribe('star-rating:changed', (starRating) => {console.log(starRating)});
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RateSpazaPage');
+  }
+
+  update(x){
+  
+    this.rate_value = x + 1;
+    console.log("got rated " + this.rate_value + "/5");
+    this.reset();
+    for(let i = 0 ; i <= x; i++){
+      this.rating[i] = 0;
+    }
+  }
+
+  reset(){
+    for(let i = 0 ; i <= 4; i++){
+      this.rating[i] = 1;
+    }
   }
 
 }
