@@ -36,6 +36,7 @@
   <div id="all">
     
   </div>
+
 <div id="com">
     <b><p>Please rate the app and comment if you want to</p></b>
 </div>
@@ -46,16 +47,13 @@
       <img *ngIf = "rate == 1" (click) = "update(x);" class = "emo_dark" src="../../assets/imgs/happiness.svg"/>
     </div>
   </div>
-  <div id="comment">
-    <ion-list>
 
-      <ion-item>
-        <ion-input type="text" placeholder="Comment here..."></ion-input>
-      </ion-item>
-    </ion-list>
-  </div>
+  <div id="comment">
   
-   
+    <b><ion-label>Comment here...</ion-label></b>
+    <textarea name="message" rows="5" cols="45"></textarea>
+  </div> 
+  
   <ion-icon name="paper-plane" id="iconn" (click)="submit()"></ion-icon>
 </ion-content>
 
