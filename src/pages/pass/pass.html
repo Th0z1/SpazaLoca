@@ -1,0 +1,40 @@
+<!--
+  Generated template for the PassPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
+
+
+</ion-header>
+
+
+<ion-content id="back">
+  <h4>Reset Password</h4>
+  
+  <div id="mov">
+  <form [formGroup]="spazaShop"> 
+
+      <ion-item>
+          <ion-icon ios="ios-mail" md="md-mail"   item-start></ion-icon>
+          <ion-input type="text" placeholder="Type your email Address...." formControlName="Email" ></ion-input>
+         </ion-item>
+         <div *ngIf="spazaShop.controls.Email.invalid && spazaShop.controls.Email.dirty">
+        </div>
+        <div class="error" *ngIf="spazaShop.get('Email').hasError('required') && spazaShop.get('Email').touched">
+          Please input your email
+        </div>
+        <div class="error" *ngIf="spazaShop.get('Email').hasError('pattern') && spazaShop.get('Email').touched">
+          Email address invalid
+        </div> 
+        </form>
+
+      </div>
+      
+  <div id="btn">
+  <button round (click)="ResetPass()">Reset Password</button>
+  </div>
+  
+</ion-content>

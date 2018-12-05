@@ -22,7 +22,7 @@ spazaShop:FormGroup;
     });
   }
   ionViewDidLoad() {
-    
+    console.log('ionViewDidLoad PassPage');
   }
 
   login({value, valid}:{value:any,valid}){
@@ -46,18 +46,10 @@ signup(spazaShop){
     this.navCtrl.push("SignUpPage");
   }
 
-  ResetPass({value, valid}:{value:any,valid}){
-    console.log(value.Email);
-    var auth = firebase.auth();
-    var emailAddress = value.Email;
-    
-    auth.sendPasswordResetEmail(value.Email).then(function() {
-      // Email sent.
-    }).catch(function(error) {
-      // An error happened.
-    });
+  
+      forgotPass(){
+        this.navCtrl.push("PassPage");
       }
-
   // showPrompt() {
 
   //   let alert = this.alertCtrl.create({
