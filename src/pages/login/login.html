@@ -50,12 +50,16 @@
           <button ion-button class="login-button" type="submit" color="dark" (click)="login(spazaShop)" outline [disabled]="spazaShop.invalid">Log In</button>
           
              <p class="signup-p">Don't have an account?  <a (click)="signup(spazaShop)" id="up">Sign Up</a></p>
+             
+   
+
              <div id = "flex">
               <button ion-fab color = "dark" (click) = "googleSign()">
                   <ion-icon name="logo-google" color = "googlered"></ion-icon>
               </button>
             </div>
         </div>
+        <button id = "reset" (click) ="  ResetPass(spazaShop);">forgot your password?</button>
               
         <!-- <button ion-button id="bb" block type="submit" outline small [disabled]="person.invalid">Register</button> -->
  

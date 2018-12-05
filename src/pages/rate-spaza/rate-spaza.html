@@ -51,7 +51,7 @@
   <div id="comment">
   
     <b><ion-label>Comment here...</ion-label></b>
-    <textarea name="message" rows="5" cols="45"></textarea>
+    <textarea name="message" [(ngModel)]="name" rows="5" cols="45"></textarea>
   </div> 
   
   <ion-icon name="paper-plane" id="iconn" (click)="submit()"></ion-icon>
