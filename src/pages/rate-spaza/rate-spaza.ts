@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+declare var firebase;
 @IonicPage()
 @Component({
   selector: 'page-rate-spaza',
@@ -18,6 +18,12 @@ export class RateSpazaPage {
   rating = [1,1,1,1,1];
   rate_value ;
 
+  name;
+
+  Feedback={
+    Comment:'',
+    Rating:''
+  };
   constructor(public navCtrl: NavController, public navParams: NavParams,public events: Events) {
     events.subscribe('star-rating:changed', (starRating) => {console.log(starRating)});
     
@@ -38,12 +44,19 @@ export class RateSpazaPage {
   }
 
   reset(){
-    for(let i = 0 ; i <= 4; i++){
+    for(let i =0 ; i <= 4; i++){
       this.rating[i] = 1;
     }
   }
+  //write to database
   submit(){
-    this.navCtrl.push("SlidesPage");
-  }
+      console.log(this.name);
+      this.Feedback. Comment=this.name;
+      this.Feedback.Rating=this.rate_value;
+      var database=firebase.database();
+      database.ref('/Feedback/').push(this.Feedback);
+    }
+    // this.navCtrl.push("SlidesPage");
+  
 
 }
