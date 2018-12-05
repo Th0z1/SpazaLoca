@@ -103,7 +103,7 @@ export class FeedPage {
   }).addTo(mymap);
 
     this.b_show_der = 1;
-    //mSouth@2011
+    //mSouth@2011 --> mLab wifi password
   });
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2xpZmZvcmRzY216b2JlIiwiYSI6ImNqanlhc2d3aDNpMGMzcGxlbDZpbzVmMXMifQ.4Hg1wM44HKbuH5H05n0Jag', {

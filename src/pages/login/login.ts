@@ -46,8 +46,8 @@ signup(spazaShop){
     this.navCtrl.push("SignUpPage");
   }
 
-  ResetPass({value, valid}:{value:any,valid}){
-    console.log(value.Email);
+  ResetPass(){
+    /*console.log(value.Email);
     var auth = firebase.auth();
     var emailAddress = value.Email;
     
@@ -56,38 +56,45 @@ signup(spazaShop){
     }).catch(function(error) {
       // An error happened.
     });
-      }
+      }*/
 
-  // showPrompt() {
 
-  //   let alert = this.alertCtrl.create({
-  //     subTitle : "Reset Password",
-  //     message : "A link to reset your password will be sent to your email",
-  //     inputs: [
-  //       {
-  //         name: 'email',
-  //         placeholder: 'e.g user@mail.com',
-  //         type : "email"
-  //       }
-  //     ],
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: data => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Reset',
-  //         handler: data => {
-  //           console.log(this.ResetPass);            
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   alert.present();
-  // }
+    let alert = this.alertCtrl.create({
+      subTitle : "Reset Password",
+      message : "A link to reset your password will be sent to your email",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'e.g user@mail.com',
+          type : "email"
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            
+            var auth = firebase.auth();
+            var emailAddress = data.email;
+    
+            auth.sendPasswordResetEmail(data.email).then(function() {
+            // Email sent.
+            }).catch(function(error) {
+            // An error happened.
+            });
+            }            
+          }
+      ]
+    });
+    alert.present();
+  }
 }
 
  
