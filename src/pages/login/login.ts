@@ -46,40 +46,95 @@ signup(spazaShop){
     this.navCtrl.push("SignUpPage");
   }
 
-  
-      forgotPass(){
-        this.navCtrl.push("PassPage");
-      }
-  // showPrompt() {
+  ResetPass(){
+    /*console.log(value.Email);
+    var auth = firebase.auth();
+    var emailAddress = value.Email;
+    
+    auth.sendPasswordResetEmail(value.Email).then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      // An error happened.
+    });
+      }*/
 
-  //   let alert = this.alertCtrl.create({
-  //     subTitle : "Reset Password",
-  //     message : "A link to reset your password will be sent to your email",
-  //     inputs: [
-  //       {
-  //         name: 'email',
-  //         placeholder: 'e.g user@mail.com',
-  //         type : "email"
-  //       }
-  //     ],
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: data => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       },
-  //       {
-  //         text: 'Reset',
-  //         handler: data => {
-  //           console.log(this.ResetPass);            
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   alert.present();
-  // }
+
+    let alert = this.alertCtrl.create({
+      subTitle : "Reset Password",
+      message : "A link to reset your password will be sent to your email",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'e.g user@mail.com',
+          type : "email"
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            
+            var auth = firebase.auth();
+            var emailAddress = data.email;
+    
+            auth.sendPasswordResetEmail(data.email).then(function() {
+            // Email sent.
+            }).catch(function(error) {
+            // An error happened.
+            });
+            }            
+          }
+      ]
+    });
+    alert.present();
+  }
+  googleSign(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+    
+    firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  
+    firebase.auth().getRedirectResult().then(function(result) {
+      firebase.auth().signInWithRedirect(provider);
+      if (result.credential) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // ...
+      }
+      // The signed-in user info.
+      var user = result.user;
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
 }
 
  

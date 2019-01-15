@@ -38,7 +38,7 @@
                       </div>
         
                    <ion-item>
-                      <ion-label>Gender</ion-label>
+                    <ion-label style="margin-left: 3%;">Gender</ion-label>
                         <ion-select formControlName="gender">
                           <ion-option value="male">Male</ion-option>
                           <ion-option value="female">Female</ion-option>
@@ -77,6 +77,18 @@
                           <div class="error" *ngIf="spazaShop.get('password').hasError('maxlength') && spazaShop.get('password').touched">
                             Maximum 12 characters
                           </div>
+
+                         
+                          <ion-item>
+                            <ion-label style="margin-left: 3%;">Type of User</ion-label>
+                            <ion-select  formControlName="typeOfUser">
+                              <ion-option value="customer">Customer</ion-option>
+                              <ion-option value="Owner">Spaza Owner</ion-option>
+                              </ion-select>
+                              <div *ngIf="spazaShop.controls.typeOfUser.invalid && spazaShop.controls.typeOfUser.dirty">
+                              </div>
+                              </ion-item>
+                        
                     
                    </form><br>
   

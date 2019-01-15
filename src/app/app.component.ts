@@ -24,7 +24,7 @@ export class MyApp {
       { title: 'Back To Search', component: "FeedPage" },
       { title: 'Your Places', component: "YourPlacesPage" },
      
-      { title: 'Rate Spaza', component: "RateSpazaPage" },
+      { title: 'Rate App', component: "RateSpazaPage" },
       { title: 'Send Spaza Location', component: "SendSpazaLocationPage" },
       { title: 'Logout', component: "LoginPage"},
 
