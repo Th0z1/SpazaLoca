@@ -16,16 +16,16 @@
 <ion-content>
   <ion-item>
     <ion-label floating>Spaza Name</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)] = "spazaName"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label floating>City/Township</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)] = "city"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label floating>Street Name</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)] = "streetName"></ion-input>
   </ion-item>
 
-  <button ion-button full>Add</button>
+  <button ion-button full (click)="addSpaza()">Add</button>
 </ion-content>
