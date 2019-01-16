@@ -6,26 +6,31 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>addSpaza</ion-title>
+  <ion-navbar color="new">
+    <!-- <ion-title>addSpaza</ion-title> -->
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content padding id="back">
+
+    <img style="height: 8em; width: 8em; margin-left: 32%; margin-top:10%;" src="../../assets/imgs/shop2.png"/>
+
   <ion-item>
     <ion-label floating>Spaza Name</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="spazaNum"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label floating>City/Township</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="cityName"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label floating>Street Name</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="streetName"></ion-input>
   </ion-item>
 
-  <button ion-button full>Add</button>
+  <div class="bott">
+  <button ion-button round color="new" (click)="myspaza()" >Add</button>
+</div>
 </ion-content>

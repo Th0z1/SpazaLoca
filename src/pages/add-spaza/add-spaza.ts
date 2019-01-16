@@ -14,6 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'add-spaza.html',
 })
 export class AddSpazaPage {
+  spazaNum;
+  cityName;
+  streetName;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -21,5 +24,7 @@ export class AddSpazaPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddSpazaPage');
   }
-
+  myspaza(){
+    this.navCtrl.push('MyStoresPage');
+  }
 }
