@@ -16,24 +16,24 @@
 <ion-content>
 
   <!-- <ion-icon class="p_Icon" name="person" ios="ios-person" md="md-person"></ion-icon> -->
-  <ion-card color="lightt">
+  <ion-card *ngFor = "let spaza of mySpazas" color="lightt">
       <img style="height: 8em; width: 8em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
       <ion-card-content>
         <ion-card-title style="color: black;">
-          Spaza Name
+          {{spaza?.spazaName}}
         </ion-card-title>
      
         <p class="pp">
-        City/Township:
+          City/Township : {{spaza?.cityName}} 
         </p>
         <p class="pp">
-        Street Name:
+          Street Name : {{spaza?.streetName}}
         </p>
       </ion-card-content>
     </ion-card>
 
   <ion-fab right bottom  >
-    <button ion-fab color="new" (click)="addSpaza()">
+    <button ion-fab color="light" (click)="addSpaza()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
