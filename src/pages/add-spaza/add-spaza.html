@@ -14,23 +14,33 @@
 
 
 <ion-content padding id="back">
+    <form [formGroup]="person" (ngSubmit)="onSubmitPerson(person)"> 
 
     <img style="height: 8em; width: 8em; margin-left: 32%; margin-top:10%;" src="../../assets/imgs/shop2.png"/>
 
   <ion-item>
     <ion-label floating>Spaza Name</ion-label>
-    <ion-input type="text" [(ngModel)]="spazaNum"></ion-input>
+    <ion-input type="text" formControlName="namespaza" [(ngModel)] = "spazaName"></ion-input>
   </ion-item>
+   <div *ngIf="person.controls.namespaza.invalid && person.controls.namespaza.dirty">
+    </div>
+
   <ion-item>
     <ion-label floating>City/Township</ion-label>
-    <ion-input type="text" [(ngModel)]="cityName"></ion-input>
+    <ion-input type="text" formControlName="cityNum" [(ngModel)] = "city"></ion-input>
   </ion-item>
+  <div *ngIf="person.controls.cityNum.invalid && person.controls.cityNum.dirty">
+    </div>
+
   <ion-item>
     <ion-label floating>Street Name</ion-label>
-    <ion-input type="text" [(ngModel)]="streetName"></ion-input>
+    <ion-input type="text" formControlName="street" [(ngModel)] = "streetName"></ion-input>
   </ion-item>
+  <div *ngIf="person.controls.street.invalid && person.controls.street.dirty">
+    </div>
 
-  <div class="bott">
-  <button ion-button round color="new" (click)="myspaza()" >Add</button>
+  <div class="butt">
+  <button ion-button round color="new" (click)="addSpaza()">Add</button>
 </div>
+</form>
 </ion-content>

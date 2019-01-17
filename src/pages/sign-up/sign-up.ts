@@ -45,15 +45,30 @@ spazaShop:FormGroup;
       firebase.auth().createUserWithEmailAndPassword(this.spazaShop.value.email,this.spazaShop.value.password).then(data=>{
      console.log(this.spazaShop.value.email);
     
-      firebase.database().ref('/users/' + (data.user.uid)).set(
-        {
-         Email:this.spazaShop.value.email,
-         name:this.spazaShop.value.name,
-         surname:this.spazaShop.value.surname,
-         gender:this.spazaShop.value.gender,
-         typeOfUser:this.spazaShop.value.typeOfUser
-        }
-      );
+      
+
+      if(this.spazaShop.value.typeOfUser == "customer"){
+        firebase.database().ref('/users/' + (data.user.uid)).set(
+          {
+            Email:this.spazaShop.value.email,
+            name:this.spazaShop.value.name,
+            surname:this.spazaShop.value.surname,
+            gender:this.spazaShop.value.gender,
+            typeOfUser:this.spazaShop.value.typeOfUser
+          }
+        );
+      }else if(this.spazaShop.value.typeOfUser == "Owner"){
+        firebase.database().ref('/users/' + (data.user.uid)).set(
+          {
+            Email:this.spazaShop.value.email,
+            name:this.spazaShop.value.name,
+            surname:this.spazaShop.value.surname,
+            gender:this.spazaShop.value.gender,
+            typeOfUser:this.spazaShop.value.typeOfUser,
+            mySpazas: {}
+          }
+        );
+      }
     
       this.navCtrl.push("FeedPage");
       this.spazaShop.reset();
