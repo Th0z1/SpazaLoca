@@ -15,26 +15,32 @@
 
 <ion-content>
 
-  <!-- <ion-icon class="p_Icon" name="person" ios="ios-person" md="md-person"></ion-icon> -->
+<p class="intro">Welcome,</p>
+
+<div  class="p_Icon">
+  <ion-icon ios="ios-person" md="md-person"></ion-icon>
+</div>
   <ion-card color="lightt">
-      <img style="height: 8em; width: 8em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
+      <img style="height: 5em; width: 5em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
       <ion-card-content>
         <ion-card-title style="color: black;">
-          Spaza Name
+       Spaza Name:{{ spazaName}}
         </ion-card-title>
      
         <p class="pp">
-        City/Township:
+        City/Township:{{city}}
         </p>
         <p class="pp">
-        Street Name:
+        Street Name:{{street}}
         </p>
       </ion-card-content>
     </ion-card>
+
 
   <ion-fab right bottom  >
     <button ion-fab color="new" (click)="addSpaza()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
+
 </ion-content>

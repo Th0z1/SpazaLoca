@@ -35,14 +35,6 @@ person : FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private Fb: FormBuilder) {
     var currentUser = firebase.auth().currentUser;
-    // firebase.database().ref("/users/"+currentUser.uid+"/mySpazas/").push(
-     
-    //   {
-    //    spazaName: this.spazaName,
-    //    city: this.city,
-    //    streetName: this.streetName,
-    
-    // });
 
     this.person = Fb.group({
       namespaza: ['',Validators.required],

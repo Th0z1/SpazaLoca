@@ -14,7 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'my-stores.html',
 })
 export class MyStoresPage {
-
+  spazaName:string;
+  city:string;
+  streetName:any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
