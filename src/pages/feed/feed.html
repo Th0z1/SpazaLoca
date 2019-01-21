@@ -4,44 +4,43 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<!-- <ion-header>
 
-  <ion-navbar>
-     <button ion-button menuToggle color="new"><ion-icon ios="ios-menu" md="md-menu"></ion-icon></button> 
-    <ion-title text-center>Feeds</ion-title> 
-  </ion-navbar>
+ <ion-header>
 
-</ion-header> -->
+    <ion-navbar color="new">
 
-
-<ion-content>
-
-  <div id="mapid">
-     <ion-fab class="side_menu">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-1>
         <b><button ion-button menuToggle  color="light" >
-                <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-              </button></b>    
-             
-        </ion-col>
-        <!-- <ion-col>
+            <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
+          </button></b>  
+          
+          
+      </ion-navbar>
+    
+
+</ion-header> 
+
+
+<ion-content id="back" >
+
+  <div class="down">
+  <ion-card style="height: 20em;"  color="lightt" >
+      <div id="mapid">
+        </div>
+     
+  </ion-card>
+ 
+
+</div>
+ 
+     <!-- <ion-col>
             <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
            
         </ion-col> -->
-      </ion-row>
-       
-  </ion-grid>  
-    </ion-fab>
-
+<!-- 
     <div *ngIf = "b_show_der === 1">
       <ion-fab ><button ion-button (click) = "go()" class="directions"  color="new"><ion-icon name="ios-navigate-outline" >Go</ion-icon></button></ion-fab>
-    </div>
-    
-     
-  </div>
-
-
+    </div>  -->
+  
 
 </ion-content>
+

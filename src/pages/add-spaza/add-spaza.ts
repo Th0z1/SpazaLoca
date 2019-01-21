@@ -26,9 +26,9 @@ export class AddSpazaPage {
   // }];
 
   mySpazas={
-    namespaza:'',
-    cityNum:'',
-    street:''
+    spazaName:'',
+    cityName:'',
+    streetName:''
   };
 
 person : FormGroup;
@@ -49,20 +49,22 @@ person : FormGroup;
   }
 
   addSpaza(){
-    this.navCtrl.push('MyStoresPage',{variable:this.spazaName,namespaza:this.city,cityNum:this.streetName});
-    // this.arrData=[];
-    console.log(this.spazaName);
-    console.log(this.city);
-    console.log(this.streetName);
+    // this.navCtrl.push('MyStoresPage',{variable:this.spazaName,namespaza:this.city,cityNum:this.streetName});
+    // // this.arrData=[];
+    // console.log(this.spazaName);
+    // console.log(this.city);
+    // console.log(this.streetName);
 
     //pass to database
-    this.mySpazas.namespaza=this.spazaName;
-    this.mySpazas.cityNum=this.city;
-    this.mySpazas.street=this.streetName;
+    this.mySpazas.spazaName=this.spazaName;
+    this.mySpazas.cityName=this.city;
+    this.mySpazas.streetName=this.streetName;
 
     var currentUser = firebase.auth().currentUser;
     var database=firebase.database();
-    database.ref("/users/"+currentUser.uid+"/mySpazas/").push(this.mySpazas);
+    database.ref("/users/"+currentUser.uid+"/mySpazas/").push(this.mySpazas).then( result =>{
+      this.navCtrl.setRoot("MyStoresPage");
+    });
 
   }
   onSubmitPerson({value, valid}:{value:any,valid}){

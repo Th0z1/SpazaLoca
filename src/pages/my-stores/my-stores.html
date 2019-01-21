@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="new">
-    <ion-title>MyStores</ion-title>
+    <ion-title  class="tit" >MyStores</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,23 +15,26 @@
 
 <ion-content>
 
-<p class="intro">Welcome,</p>
+<p  class="intro">Welcome,{{users?.name}} {{users?.surname}}</p>
+
 
 <div  class="p_Icon">
   <ion-icon ios="ios-person" md="md-person"></ion-icon>
 </div>
-  <ion-card color="lightt">
-      <img style="height: 5em; width: 5em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
+  <!-- <ion-icon class="p_Icon" name="person" ios="ios-person" md="md-person"></ion-icon> -->
+
+  <ion-card *ngFor = "let spaza of mySpazas" color="lightt">
+      <img style="height: 8em; width: 8em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
       <ion-card-content>
         <ion-card-title style="color: black;">
-       Spaza Name:{{ spazaName}}
+          {{spaza?.spazaName}}
         </ion-card-title>
      
         <p class="pp">
-        City/Township:{{city}}
+          City/Township : {{spaza?.cityName}} 
         </p>
         <p class="pp">
-        Street Name:{{street}}
+          Street Name : {{spaza?.streetName}}
         </p>
       </ion-card-content>
     </ion-card>
