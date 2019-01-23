@@ -39,12 +39,14 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
-  new:#ff9472
+  new:#ff9472,
+  lightt:#f1987c,
+  
 );
 // ion-item colors
 // $list-md-background-color:color($colors,new);
 // $list-md-text-color:color($colors,light);
-
+$toolbar-md-title-text-color:black;
 
 // App iOS Variables
 // --------------------------------------------------

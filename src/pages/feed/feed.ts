@@ -1,6 +1,9 @@
+import { PopoverComponent } from './../../components/popover/popover';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { PopoverController } from 'ionic-angular'
+import { ShopsComponent } from '../../components/shops/shops';
 
 /**
  * Generated class for the FeedPage page.
@@ -21,12 +24,35 @@ export class FeedPage {
 
   b_show_der : number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private geolocation : Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private geolocation : Geolocation,public popoverCtrl: PopoverController) {
     
     this.initializeItems();
 
   }
 
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverComponent);
+    popover.present({
+      ev: myEvent
+    });
+
+    popover.onDidDismiss(popoverData=>{
+      console.log(popoverData);
+    })
+
+  }
+
+  TUCKPopover(mevent){
+    let popover = this.popoverCtrl.create(ShopsComponent);
+    popover.present({
+      ev: mevent
+    });
+
+    popover.onDidDismiss(popoverData=>{
+      console.log(popoverData);
+    })
+    
+  }
   initializeItems() {
     this.items = [
      
@@ -82,29 +108,29 @@ export class FeedPage {
   showMap(lat : number, log : number){
     L.mapbox.accessToken = 'pk.eyJ1IjoicmVhbHNhbmVsZSIsImEiOiJjanAybWZ2enUwODIxM3dwaGo2cDU4bWNxIn0.Q0PkSHqlG4VV6CNw1c_zcA';
     var mymap = L.map('mapid',{zoomControl:false}).setView([lat,log],13);
-    var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
-      keepOpen: true, autocomplete: true
-  });
+  //   var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
+  //     keepOpen: true, autocomplete: true
+  // });
 
-  geocoderControl.addTo(mymap);
+  // geocoderControl.addTo(mymap);
 
-  geocoderControl.on('select', function(res) {
-    console.log(res)
+  // geocoderControl.on('select', function(res) {
+  //   console.log(res)
     
-    var location = L.marker([res.feature.center[1], res.feature.center[0]],9).addTo(mymap);
-    console.log(location);
+  //   var location = L.marker([res.feature.center[1], res.feature.center[0]],9).addTo(mymap);
+  //   console.log(location);
     
-    console.log("b_show_der = "+ this.b_show_der);
-    var circle = L.circle([res.feature.center[1], res.feature.center[0]], {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5,
-      radius: 20
-  }).addTo(mymap);
+  //   console.log("b_show_der = "+ this.b_show_der);
+  //   var circle = L.circle([res.feature.center[1], res.feature.center[0]], {
+  //     color: 'red',
+  //     fillColor: '#f03',
+  //     fillOpacity: 0.5,
+  //     radius: 20
+  // }).addTo(mymap);
 
-    this.b_show_der = 1;
-    //mSouth@2011 --> mLab wifi password
-  });
+  //   this.b_show_der = 1;
+  //   //mSouth@2011 --> mLab wifi password
+  // });
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiY2xpZmZvcmRzY216b2JlIiwiYSI6ImNqanlhc2d3aDNpMGMzcGxlbDZpbzVmMXMifQ.4Hg1wM44HKbuH5H05n0Jag', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',

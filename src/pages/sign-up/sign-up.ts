@@ -34,10 +34,13 @@ spazaShop:FormGroup;
     console.log('ionViewDidLoad SignUpPage');
   }
   register({value, valid}:{value:any,valid}){
+    
+  
     let loader = this.loadingCtrl.create({
       spinner: "ios",
       content:"Please Wait!",
       duration:5000
+
    });
   
    loader.present();
@@ -45,18 +48,39 @@ spazaShop:FormGroup;
       firebase.auth().createUserWithEmailAndPassword(this.spazaShop.value.email,this.spazaShop.value.password).then(data=>{
      console.log(this.spazaShop.value.email);
     
-      firebase.database().ref('/users/' + (data.user.uid)).set(
-        {
-         Email:this.spazaShop.value.email,
-         name:this.spazaShop.value.name,
-         surname:this.spazaShop.value.surname,
-         gender:this.spazaShop.value.gender,
-         typeOfUser:this.spazaShop.value.typeOfUser
-        }
-      );
+      
+
+      if(this.spazaShop.value.typeOfUser == "customer"){
+        firebase.database().ref('/users/' + (data.user.uid)).set(
+          {
+            Email:this.spazaShop.value.email,
+            name:this.spazaShop.value.name,
+            surname:this.spazaShop.value.surname,
+            gender:this.spazaShop.value.gender,
+            typeOfUser:this.spazaShop.value.typeOfUser
+          }
+        ).then(result => {
+          this.navCtrl.push("FeedPage");
+          this.spazaShop.reset();
+        });
+      }else if(this.spazaShop.value.typeOfUser == "Owner"){
+        firebase.database().ref('/users/' + (data.user.uid)).set(
+          {
+            Email:this.spazaShop.value.email,
+            name:this.spazaShop.value.name,
+            surname:this.spazaShop.value.surname,
+            gender:this.spazaShop.value.gender,
+            typeOfUser:this.spazaShop.value.typeOfUser,
+            mySpazas: {}
+          }
+        ).then(result => {
+          this.navCtrl.push("MyStoresPage");
+          this.spazaShop.reset();
+        });
+      }
     
-      this.navCtrl.push("FeedPage");
-      this.spazaShop.reset();
+      
+      
     })
     }
 }

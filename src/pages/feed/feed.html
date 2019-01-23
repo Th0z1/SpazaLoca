@@ -4,44 +4,55 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
  <ion-header>
 
-  <ion-navbar>
-     <button ion-button menuToggle color="new"><ion-icon ios="ios-menu" md="md-menu"></ion-icon></button> 
- 
-  </ion-navbar>
+    <ion-navbar color="new">
+
+<ion-row>
+  <ion-col col-1 >
+          <button ion-button menuToggle  color="light" ><ion-icon ios="ios-menu" md="md-menu" style="transform: translateY(4px);"></ion-icon></button>
+  </ion-col>
+
+  <ion-col col-3 >
+          <button ion-button clear color="light"  (click)="presentPopover($event)">City Name</button>
+  </ion-col>    
+  <ion-col col-6>
+          <button ion-button clear color="light"  (click)="TUCKPopover($event)">TuckShop Name</button> 
+  </ion-col>
+
+  <ion-col col-2 >
+          <ion-icon name="search" style="font-size: 15pt; transform: translateY(12px); color: white;"></ion-icon > 
+  </ion-col> 
+
+</ion-row>
+      </ion-navbar>
+    
 
 </ion-header> 
 
 
-<ion-content>
-  <!-- <ion-col col-1>
-    <b><button ion-button menuToggle  color="light" >
-            <ion-icon ios="ios-menu" md="md-menu"></ion-icon>
-          </button></b>    
-    </ion-col> -->
+<ion-content id="back" >
 
-  <div id="mapid">
-     <ion-fab class="side_menu">
-    <ion-grid>
-      <ion-row> 
+  <div class="down">
+  <ion-card style="height: 20em;"  color="lightt" >
+      <div id="mapid">
+        </div>
      
-        <!-- <ion-col>
+  </ion-card>
+ 
+
+</div>
+ 
+     <!-- <ion-col>
             <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
            
-        </ion-col>  -->
-      </ion-row> 
-      
-  </ion-grid>  
-    </ion-fab>
-
+        </ion-col> -->
+<!-- 
     <div *ngIf = "b_show_der === 1">
       <ion-fab ><button ion-button (click) = "go()" class="directions"  color="new"><ion-icon name="ios-navigate-outline" >Go</ion-icon></button></ion-fab>
-    </div>
-    
-     
-  </div>
-
-
+    </div>  -->
+  
 
 </ion-content>
+
