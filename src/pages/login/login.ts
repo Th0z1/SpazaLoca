@@ -37,9 +37,18 @@ spazaShop:FormGroup;
     console.log(value.Email);
     console.log(value.password);
     firebase.auth().signInWithEmailAndPassword(value.Email,value.password).then(user=>{
-      this.navCtrl.setRoot('FeedPage');
+      
+      firebase.database().ref('/users/'+user.user.uid).once('value', (snapshot) => {
+
+        if(snapshot.val().typeOfUser == 'customer'){
+          this.navCtrl.setRoot('FeedPage');
+        }else if(snapshot.val().typeOfUser == 'Owner'){
+          this.navCtrl.setRoot('MyStoresPage');
+        }
+      });
+      
     
-    this.spazaShop.reset();
+      this.spazaShop.reset();
     });
   }
 signup(spazaShop){

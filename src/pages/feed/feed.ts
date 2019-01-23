@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 /**
@@ -9,6 +9,7 @@ import { Geolocation } from '@ionic-native/geolocation';
  * Ionic pages and navigation.
  */
 declare var L;
+declare var firebase;
 @IonicPage()
 @Component({
   selector: 'page-feed',
@@ -18,10 +19,11 @@ export class FeedPage {
 
   searchQuery: string = '';
   items: string[];
-
+  spazaList = [];
   b_show_der : number = 0;
+  mymap:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private geolocation : Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private menuCtrl: MenuController, private geolocation : Geolocation, private altCtrl: AlertController) {
     
     this.initializeItems();
 
@@ -38,8 +40,54 @@ export class FeedPage {
     // this.b_show_der = 1;
     console.log("b_show_der = "+ this.b_show_der);
     this.menuCtrl.enable(true,'myMenu');
-    this.getCurrentCoords();
+    this.getCurrentCoords();    // --> user Maker coordinate
+    //this.getAllSpazas();    //show all spazas on the map
     console.log('ionViewDidLoad FeedPage');
+  }
+
+  getAllSpazas(){
+    // Array<{spazaName: string, latlog: any ,spazaIndex: number}>
+
+    var mySpazasRef;
+    
+    var usersRef = firebase.database().ref("users/").on("value", (snapshot) => {
+      snapshot.forEach(usersElement => {
+        mySpazasRef = usersElement.key;
+        var customCircleMarker = L.Marker.extend({
+                options: { 
+                  spazaName: '',//element.val().spazaName,
+                  cityName: '',//element.val().cityName,
+                  streetName: ''//element.val().streetName
+                }
+            });
+        firebase.database().ref("users/"+mySpazasRef+"/mySpazas").once("value",(snap) => {
+          snap.forEach(element => {
+            //var marker = L.marker([element.val().latitude_coord, element.val().longitude_coord],10).addTo(this.mymap);
+            // var marker = L.marker([-25.7487246, 28.2671659],10).on('click', this.onClick).addTo(this.mymap);
+            // var marker = L.marker([element.val().latitude_coord, element.val().longitude_coord],10).on('click', function(e){
+            //   console.log('works')
+            // }).addTo(this.mymap);
+            
+            var myMarker = new customCircleMarker([element.val().latitude_coord, element.val().longitude_coord], { 
+              /*title: 'unselected',
+              radius: 20,*/
+              spazaName: element.val().spazaName,
+              cityName: element.val().cityName,
+              streetName: element.val().streetName
+            });
+            myMarker.on('click', function(e){
+              console.log(myMarker.options.spazaName)
+              console.log('works')
+            }).addTo(this.mymap);
+          });
+        })
+      });
+    });
+  }
+
+  onClick(): any {
+    //console.log(element);
+    console.log("Marker clicked!")
   }
 
   menu(){
@@ -72,6 +120,8 @@ export class FeedPage {
       console.log('Resp =>>>'+resp);
       console.log(resp);
       this.showMap(resp.coords.latitude, resp.coords.longitude);
+
+      this.getAllSpazas();    // --> Show all spazas on a map
      }).catch((error) => {
        console.log('Error getting location', error);
      });
@@ -81,17 +131,17 @@ export class FeedPage {
 
   showMap(lat : number, log : number){
     L.mapbox.accessToken = 'pk.eyJ1IjoicmVhbHNhbmVsZSIsImEiOiJjanAybWZ2enUwODIxM3dwaGo2cDU4bWNxIn0.Q0PkSHqlG4VV6CNw1c_zcA';
-    var mymap = L.map('mapid',{zoomControl:false}).setView([lat,log],13);
+    this.mymap = L.map('mapid',{zoomControl:false}).setView([lat,log],13);
     var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
       keepOpen: true, autocomplete: true
   });
 
-  geocoderControl.addTo(mymap);
+  geocoderControl.addTo(this.mymap);
 
   geocoderControl.on('select', function(res) {
     console.log(res)
     
-    var location = L.marker([res.feature.center[1], res.feature.center[0]],9).addTo(mymap);
+    var location = L.marker([res.feature.center[1], res.feature.center[0]],9).addTo(this.mymap);
     console.log(location);
     
     console.log("b_show_der = "+ this.b_show_der);
@@ -100,7 +150,7 @@ export class FeedPage {
       fillColor: '#f03',
       fillOpacity: 0.5,
       radius: 20
-  }).addTo(mymap);
+  }).addTo(this.mymap);
 
     this.b_show_der = 1;
     //mSouth@2011 --> mLab wifi password
@@ -111,36 +161,17 @@ export class FeedPage {
       maxZoom: 18,
      id: 'mapbox.streets',
       accessToken: 'your.mapbox.access.token'
-    }).addTo(mymap);
+    }).addTo(this.mymap);
 
-  var marker = L.marker([lat, log],13).addTo(mymap);
+  var marker = L.marker([lat, log],10,).addTo(this.mymap);
+
   var circle = L.circle([lat, log], {
     color: 'green',
     fillColor: '#00802b',
     fillOpacity: 0.5,
     radius: 20
-  }).addTo(mymap);
-
-  /*var circle = L.circle([51.508, -0.11], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-  }).addTo(mymap);
-
-  var polygon = L.polygon([
-    [51.509, -0.08],
-    [51.503, -0.06],
-    [51.51, -0.047]
-  ]).addTo(mymap);*/ 
+  }).addTo(this.mymap);
   
-  marker.bindPopup("<b>My location.</b>").openPopup();
-  /*circle.bindPopup("I am a circle.");
-  polygon.bindPopup("I am a polygon.");
-
-  var popup = L.popup()
-    .setLatLng([51.5, -0.09])
-    .setContent("I am a standalone popup.")
-    .openOn(mymap);*/
+  marker.bindPopup("<b>I'm Here</b>").openPopup();
   }
 }
