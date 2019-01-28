@@ -7,10 +7,15 @@ import { MyApp } from './app.component';
 import { StarRatingModule } from 'ionic3-star-rating';
 
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen'; 
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { PopoverComponent } from '../components/popover/popover';
+import { ShopsComponent } from '../components/shops/shops';
+
 @NgModule({
   declarations: [
     MyApp,
+    PopoverComponent,
+    ShopsComponent
     
    
   ],
@@ -22,6 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    PopoverComponent,
+    ShopsComponent
     
     
   ],

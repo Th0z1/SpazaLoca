@@ -7,7 +7,13 @@
 <ion-header>
 
   <ion-navbar color="new">
-    <ion-title>MyStores</ion-title>
+   
+    <h1 style="text-align: center"class="tit">MYSTORES</h1>
+    <ion-fab right top>
+    <button class="trans" (click)="logout()">
+      <ion-icon ios="ios-log-out" md="md-log-out" style="color:black; transform: translateY(12px); font-size: 20pt "></ion-icon>
+    </button>
+   </ion-fab>
   </ion-navbar>
 
 </ion-header>
@@ -15,26 +21,43 @@
 
 <ion-content>
 
-  <!-- <ion-icon class="p_Icon" name="person" ios="ios-person" md="md-person"></ion-icon> -->
-  <ion-card *ngFor = "let spaza of mySpazas" color="lightt">
+<b><p  class="intro">Welcome,{{users?.name}} {{users?.surname}}</p></b>
+
+
+<div  class="p_Icon">
+  <ion-icon ios="ios-person" md="md-person"></ion-icon>
+</div>
+ 
+
+  <ion-card *ngFor = "let spaza of mySpazas" color="lightt" (press)="showConfirm($event,spaza)">
       <img style="height: 8em; width: 8em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
+  
+        
       <ion-card-content>
+        
+      
         <ion-card-title style="color: black;">
           {{spaza?.spazaName}}
         </ion-card-title>
      
         <p class="pp">
-          City/Township : {{spaza?.cityName}} 
+          Township : {{spaza?.cityName}} 
         </p>
         <p class="pp">
           Street Name : {{spaza?.streetName}}
         </p>
+
+       
       </ion-card-content>
+ 
+        
     </ion-card>
 
-  <ion-fab right bottom  >
-    <button ion-fab color="light" (click)="addSpaza()">
-      <ion-icon name="add"></ion-icon>
+
+  <ion-fab right bottom >
+    <button ion-fab color="new" (click)="addSpaza()" style="border: solid black;">
+      <ion-icon name="add" style="color:black"></ion-icon>
     </button>
   </ion-fab>
+
 </ion-content>

@@ -34,10 +34,13 @@ spazaShop:FormGroup;
     console.log('ionViewDidLoad SignUpPage');
   }
   register({value, valid}:{value:any,valid}){
+    
+  
     let loader = this.loadingCtrl.create({
       spinner: "ios",
       content:"Please Wait!",
       duration:5000
+
    });
   
    loader.present();
@@ -56,7 +59,10 @@ spazaShop:FormGroup;
             gender:this.spazaShop.value.gender,
             typeOfUser:this.spazaShop.value.typeOfUser
           }
-        );
+        ).then(result => {
+          this.navCtrl.push("FeedPage");
+          this.spazaShop.reset();
+        });
       }else if(this.spazaShop.value.typeOfUser == "Owner"){
         firebase.database().ref('/users/' + (data.user.uid)).set(
           {
@@ -67,11 +73,14 @@ spazaShop:FormGroup;
             typeOfUser:this.spazaShop.value.typeOfUser,
             mySpazas: {}
           }
-        );
+        ).then(result => {
+          this.navCtrl.push("MyStoresPage");
+          this.spazaShop.reset();
+        });
       }
     
-      this.navCtrl.push("FeedPage");
-      this.spazaShop.reset();
+      
+      
     })
     }
 }

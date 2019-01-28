@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 /**
  * Generated class for the LoginPage page.
@@ -15,7 +15,8 @@ declare var firebase;
 })
 export class LoginPage {
 spazaShop:FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private Fb: FormBuilder,public loadingCtrl: LoadingController,private alertCtrl: AlertController ) {
+isUserLoggedIn: any = false;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private Fb: FormBuilder,public loadingCtrl: LoadingController,private alertCtrl: AlertController,private toastCtrl: ToastController ) {
     this.spazaShop = Fb.group({
       Email: ['',Validators.compose([ Validators.pattern('^[a-zA-Z_.+-]+@[a-zA-Z-]+.[a-zA-Z0-9-.]+$'),Validators.required])],
       password: ['',Validators.compose([Validators.minLength(6),Validators.maxLength(12),Validators.required])],
@@ -37,18 +38,23 @@ spazaShop:FormGroup;
     console.log(value.Email);
     console.log(value.password);
     firebase.auth().signInWithEmailAndPassword(value.Email,value.password).then(user=>{
-      
+
       firebase.database().ref('/users/'+user.user.uid).once('value', (snapshot) => {
 
         if(snapshot.val().typeOfUser == 'customer'){
+          this.isUserLoggedIn = true;
           this.navCtrl.setRoot('FeedPage');
         }else if(snapshot.val().typeOfUser == 'Owner'){
+          this.isUserLoggedIn = true;
           this.navCtrl.setRoot('MyStoresPage');
         }
       });
       
     
       this.spazaShop.reset();
+    },error => {
+      loader.dismiss();
+      this.showPopup("Login Error!", "Please enter correct credentials!");
     });
   }
 signup(spazaShop){
@@ -95,8 +101,21 @@ signup(spazaShop){
     
             auth.sendPasswordResetEmail(data.email).then(function() {
             // Email sent.
-            }).catch(function(error) {
-            // An error happened.
+            }).catch((error)=> {
+              // An error happened.
+              var errorCode = error.code;
+              var errorMessage = error.message
+              const toast = this.toastCtrl.create({
+                message: errorMessage,
+                showCloseButton: true,
+                closeButtonText: 'Ok',
+                position: 'middle'
+              });
+              toast.onDidDismiss(() => {
+                console.log('Dismissed toast');
+              });
+            
+              toast.present(); 
             });
             }            
           }
@@ -143,6 +162,24 @@ signup(spazaShop){
       var credential = error.credential;
       // ...
     });
+  }
+
+  showPopup(title, text) {
+    let alert = this.alertCtrl.create({
+      title: "<u>" + title + "</u>",
+      subTitle: text,
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.isUserLoggedIn) {
+              this.navCtrl.popToRoot();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
 

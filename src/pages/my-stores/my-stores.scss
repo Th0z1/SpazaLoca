@@ -3,4 +3,28 @@ page-my-stores {
     .pp{
       color: black;
     }
+    .p_Icon{
+        text-align: center;
+        margin: auto;
+        font-size: 450%;
+        top:50%;
+        background:#ff9472;
+        padding:10px;
+        border-radius: 50%;
+        height: 20%;
+        width: 50%
+
+    }
+    .intro{
+        text-align: right;
+    }
+    .h1{
+        
+        color: black;
+        text-align: center;
+    }
+  .trans{
+      background-color: transparent !important;
+      border-style: solid;
+  }
 }
