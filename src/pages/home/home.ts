@@ -19,6 +19,8 @@ declare var firebase;
 export class HomePage {
 
   allSpazasList = [];
+  spazaListCategory = [];
+  searchItems = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private launchNavigator: LaunchNavigator, private altCtrl: AlertController, private geolocation: Geolocation) {
   }
@@ -26,6 +28,38 @@ export class HomePage {
   ionViewDidLoad() {
     this.getAllSpazas()
     console.log('ionViewDidLoad HomePage');
+  }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    //this.initializeItems();
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.searchItems = this.searchItems.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+
+  initializeItems(): any {
+    for(let index = 0; index < this.spazaListCategory.length; index++){
+      console.log(this.spazaListCategory[index])
+      // this.searchItems.push(this.spazaListCategory[index].spazaName)
+    }
+  }
+
+
+  contributions(){
+    this.navCtrl.push("MyStoresPage")
+  }
+
+  addSpaza(){
+    console.log("Clicked")
+    this.navCtrl.push('AddSpazaPage');
   }
 
   getAllSpazas(){
@@ -52,7 +86,7 @@ export class HomePage {
               spazaName : element.val().spazaName,
               streetName : element.val().streetName,
             };
-            
+            this.searchItems.push(theSpaza.spazaName)
             this.allSpazasList.push(theSpaza);
             console.log(element)
               
@@ -82,6 +116,8 @@ export class HomePage {
   
           });
         })
+        this.spazaListCategory = this.allSpazasList;
+        this.initializeItems();
       });
   }
 

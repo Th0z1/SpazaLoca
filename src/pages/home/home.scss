@@ -10,4 +10,42 @@ page-home {
         top: 0;
         height: 100vh;
     }
+
+    #nav{
+        width: calc(100% - 24px);
+        left: 12px;
+        background: white;
+        height: 50px;
+        position: fixed;
+        top: 5px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1), 2px 4px 5px rgba(0, 0, 0, 0.1),  0px -2px 2px rgba(0, 0, 0, 0.14);
+        ion-searchbar{
+          padding: 0px;
+          
+        }
+      }
+
+
+    //   #nav{
+    //     width: calc(100% - 24px);
+    //     left: 12px;
+    //     background: white;
+    //     height: 50px;
+    //     position: fixed;
+    //     top: 5px;
+    //     border-radius: 10px;
+    //     box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1), 2px 4px 5px rgba(0, 0, 0, 0.1),  0px -2px 2px rgba(0, 0, 0, 0.14);
+    //     ion-searchbar{
+    //       padding: 0px;
+          
+    //     }
+    // }
+
+      .searchbar-input{
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none  !important;
+        box-shadow: none  !important;
+        background: transparent !important;
+}
 }

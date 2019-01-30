@@ -4,42 +4,58 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header >
 
-  <ion-navbar>
-    <ion-title>home</ion-title>
-  </ion-navbar>
-  <button ion-button menuToggle>
+  <ion-navbar color="new">
+    <ion-fab id="nav" >
+
+        <button ion-fab style="display: none;"></button>
+        <ion-row>
+
+            <ion-col col->
+                <ion-searchbar (ionInput)="getItems($event)">
+            
+                </ion-searchbar>
+            </ion-col>
+          <ion-col col-2>
+    <button ion-button icon-only  clear medium (click) = "profile();" style="border-left: 1px solid gray">
+      <ion-icon ios="ios-person" md="md-person"></ion-icon>
+    </button>
+  </ion-col>
+  
+        </ion-row>
+  
+  </ion-fab>
+</ion-navbar>
+  <!-- <button ion-button menuToggle>
     <ion-icon name="menu"></ion-icon>
-  </button>
+  </button> -->
 </ion-header>
 
 
 <ion-content >
 
-  <ion-card *ngFor = "let spaza of allSpazasList" >
-    <img src="../../assets/imgs/store.png" style="height: 10em;width: 10em;">
-    <ion-fab right top>
-      <button ion-fab>
-        <ion-icon name="pin"></ion-icon>
-      </button>
-    </ion-fab>
+  <ion-card *ngFor = "let spaza of allSpazasList" color="lightt">
+    <img src="../../assets/imgs/store.png" style="height: 15em;width: 15em;">
+    
   
-    <ion-item>
-      <ion-icon name="football" item-start large></ion-icon>
-      <h2>{{spaza.spazaName}}</h2>
-      <p>11 N. Way St, Madison, WI 53703</p>
+    <ion-item color="lightt">
+      <!-- <ion-icon name="football" item-start large></ion-icon> -->
+      <h1 text-center>{{spaza.spazaName}}</h1>
+      <h2>{{spaza.cityName}}</h2>
+      <p>Street : {{spaza.streetName}}</p>
+      <!-- <p>11 N. Way St, Madison, WI 53703</p> -->
     </ion-item>
   
-    <ion-item>
+    <!-- <ion-item color="lightt">
       <ion-icon name="wine" item-start large ></ion-icon>
       <h2>Institute of Fine Cocktails</h2>
       <p>14 S. Hop Avenue, Madison, WI 53703</p>
-    </ion-item>
+    </ion-item> -->
   
-    <ion-item (click) = "getCurrentCoords(spaza)" >
-      <span item-start>18 min</span>
-      <span item-start>(2.6 mi)</span>
+    <ion-item (click) = "getCurrentCoords(spaza)" color="lightt" >
+      <!-- <span item-start>18 min</span>
+      <span item-start>(2.6 mi)</span> -->
       <button ion-button icon-start clear item-end>
         <ion-icon name="navigate"></ion-icon>
         Go
@@ -47,4 +63,11 @@
     </ion-item>
   </ion-card>
 
+  <ion-fab right bottom >
+      <button ion-fab color="new" (click)="addSpaza()" style="border: solid black;">
+        <ion-icon name="add" style="color:black"></ion-icon>
+      </button>
+    </ion-fab>
+
 </ion-content>
+

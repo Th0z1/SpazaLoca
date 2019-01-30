@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -9,7 +9,7 @@ import { Geolocation } from '@ionic-native/geolocation';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-declare var firebase;
+//declare var firebase;
 
 @IonicPage()
 @Component({
@@ -34,19 +34,91 @@ export class AddSpazaPage {
 
 person : FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private Fb: FormBuilder,private geolocation : Geolocation, public alertCtrl: AlertController) {
-    var currentUser = firebase.auth().currentUser;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private Fb: FormBuilder,private geolocation : Geolocation, public alertCtrl: AlertController, private  actionSheetCtrl: ActionSheetController) {
+  //   var currentUser = firebase.auth().currentUser;
 
     this.person = Fb.group({
       namespaza: ['',Validators.required],
       cityNum: ['',[Validators.required]],
-      street: ['',[Validators.required]]
+      street: ['',[Validators.required]],
+      houseNO: ['',Validators.required]
     });
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddSpazaPage');
   }
+
+  /*updateProfilePic(){
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Complete action using..',
+      buttons: [
+        {
+          text: 'Camera',
+          //role: 'destructive',
+          icon: 'ios-camera',
+          handler: () => {
+            this.takePhoto(1);
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Gallery  ',
+          icon: 'images',
+          handler: () => {
+            this.takePhoto(0);
+            console.log('Archive clicked');
+          }
+        }
+        // ,{
+        //   text: 'Cancel',
+        //   role: 'cancel',
+        //   handler: () => {
+        //     console.log('Cancel clicked');
+        //   }
+        // }
+      ]
+    });
+    actionSheet.present();
+  }*/
+
+  /*takePhoto(sourceType:number) {
+    const options: CameraOptions = {
+      quality: 50,
+      targetWidth : 240,
+      targetHeight : 240,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true,
+      sourceType:sourceType,
+      allowEdit: true
+    }
+
+    this.camera.getPicture(options).then((imagePath) => {
+      //let base64Image = 'data:image/jpeg;base64,' + imageData;
+      if (this.platform.is('android') && options.sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
+        this.filePath.resolveNativePath(imagePath)
+          .then(filePath => {
+           console.log("file Path =========== "+ filePath)
+           this.imageURI = filePath;
+           if(filePath != null){
+
+            this.saveImgToFireStorage()
+           }
+          });
+      } else {
+        console.log("Image Path =========== "+ imagePath)
+        this.imageURI = imagePath;
+
+        if(this.imageURI != null && imagePath != null){
+          this.saveImgToFireStorage();
+        }
+      }
+    }, (err) => {
+     // this.presentToast('Error while selecting image.');
+    });
+  }*/
 
   addSpaza(latitude_coord: number , longitude_coord : number){
     // this.navCtrl.push('MyStoresPage',{variable:this.spazaName,namespaza:this.city,cityNum:this.streetName});
@@ -60,18 +132,18 @@ person : FormGroup;
     this.mySpazas.cityName=this.city;
     this.mySpazas.streetName=this.streetName;*/
 
-    var currentUser = firebase.auth().currentUser;
-    var database=firebase.database();
-    database.ref("/users/"+currentUser.uid+"/mySpazas/").push({
-      //Email:this.spazaShop.value.email,
-      spazaName: this.person.value.namespaza,
-      cityName: this.person.value.cityNum,
-      streetName: this.person.value.street,
-      latitude_coord: latitude_coord,
-      longitude_coord: longitude_coord
-    }).then( result =>{
-      this.navCtrl.setRoot("MyStoresPage");
-    });
+    // var currentUser = firebase.auth().currentUser;
+    // var database=firebase.database();
+    // database.ref("/users/"+currentUser.uid+"/mySpazas/").push({
+    //   //Email:this.spazaShop.value.email,
+    //   spazaName: this.person.value.namespaza,
+    //   cityName: this.person.value.cityNum,
+    //   streetName: this.person.value.street,
+    //   latitude_coord: latitude_coord,
+    //   longitude_coord: longitude_coord
+    // }).then( result =>{
+    //   this.navCtrl.setRoot("MyStoresPage");
+    // });
   }
 
   showConfirm(){
