@@ -13,7 +13,7 @@
         <ion-row>
 
             <ion-col col->
-                <ion-searchbar (ionInput)="getItems($event)">
+                <ion-searchbar (ionInput)="getItems($event)" autocomplete="on">
             
                 </ion-searchbar>
             </ion-col>
@@ -26,6 +26,11 @@
         </ion-row>
   
   </ion-fab>
+
+  <!-- ionic searchable element -->
+  
+  
+  <!-- end searchable element -->
 </ion-navbar>
   <!-- <button ion-button menuToggle>
     <ion-icon name="menu"></ion-icon>
@@ -34,6 +39,24 @@
 
 
 <ion-content >
+  <ion-list *ngIf="show == true">
+    <ion-item *ngFor = "let item of searchItems" (click) = "userSearch(item)">
+      {{item}}
+    </ion-item>
+  </ion-list>
+    <!-- <ion-fab id="nav" >
+        <select-searchable placeholder="Search" 
+        item-content 
+        [(ngModel)] = "searchString" 
+        [items]="searchItems"
+        itemTextFeild = "spazaName"
+        itemValueField="id"
+        [canSearch]="true"
+        (onChange) = "userSearch($event)">
+    
+        </select-searchable>
+      
+      </ion-fab> -->
 
   <ion-card *ngFor = "let spaza of allSpazasList" color="lightt">
     <img src="../../assets/imgs/store.png" style="height: 15em;width: 15em;">

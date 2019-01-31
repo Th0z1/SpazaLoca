@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Geolocation } from '@ionic-native/geolocation';
+import { SelectSearchableComponent } from 'ionic-select-searchable';
 
 /**
  * Generated class for the HomePage page.
@@ -18,9 +19,14 @@ declare var firebase;
 })
 export class HomePage {
 
+  @ViewChild('myselect') selectComponent : SelectSearchableComponent;
+
   allSpazasList = [];
   spazaListCategory = [];
   searchItems = [];
+  show : boolean = false;
+  searchString = null;
+  items =[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private launchNavigator: LaunchNavigator, private altCtrl: AlertController, private geolocation: Geolocation) {
   }
@@ -31,10 +37,12 @@ export class HomePage {
   }
 
   getItems(ev: any) {
+    this.show = true;
     // Reset items back to all of the items
-    //this.initializeItems();
+    this.initializeItems();
 
     // set val to the value of the searchbar
+    console.log("hhh")
     const val = ev.target.value;
 
     // if the value is an empty string don't filter the items
@@ -47,10 +55,35 @@ export class HomePage {
 
   initializeItems(): any {
     for(let index = 0; index < this.spazaListCategory.length; index++){
-      console.log(this.spazaListCategory[index])
+      console.log(this.spazaListCategory[index].spazaName);
+      console.log(this.spazaListCategory[index].id)
+      this.searchItems.push(this.spazaListCategory[index].spazaName);
       // this.searchItems.push(this.spazaListCategory[index].spazaName)
     }
+    // this.searchItems = this.allSpazasList;
   }
+
+  // --> Open the @ViewChild component
+  openFromCode(){
+    this.selectComponent.open();
+  }
+
+  userSearch( selectedItem : string/*event :{component: SelectSearchableComponent, value: any}*/){
+    console.log(event);
+    if(selectedItem != null && selectedItem != ''){
+      let tempSpazaList = this.spazaListCategory;
+      this.allSpazasList = [];
+      
+      for(let index = 0; index < this.allSpazasList.length; index++){
+        if(tempSpazaList[index].spazaName == selectedItem ){
+          this.allSpazasList.push(tempSpazaList[index])
+
+        }
+      }
+      this.show = false;
+    }
+  }
+  // end
 
 
   contributions(){
@@ -66,7 +99,8 @@ export class HomePage {
     // Array<{spazaName: string, latlog: any ,spazaIndex: number}>
 
     var mySpazasRef;
-    
+    let id = 1;
+
     var usersRef = firebase.database().ref("users/").on("value", (snapshot) => {
       snapshot.forEach(usersElement => {
         mySpazasRef = usersElement.key;
@@ -80,12 +114,14 @@ export class HomePage {
         firebase.database().ref("users/"+mySpazasRef+"/mySpazas").once("value",(snap) => {
           snap.forEach(element => {
             var theSpaza = {
+              id : id++,
               cityName :element.val().cityName,
               latitude_coord : element.val().latitude_coord,
               longitude_coord : element.val().longitude_coord,
               spazaName : element.val().spazaName,
               streetName : element.val().streetName,
             };
+            
             this.searchItems.push(theSpaza.spazaName)
             this.allSpazasList.push(theSpaza);
             console.log(element)
@@ -117,7 +153,7 @@ export class HomePage {
           });
         })
         this.spazaListCategory = this.allSpazasList;
-        this.initializeItems();
+        // this.initializeItems();
       });
   }
 

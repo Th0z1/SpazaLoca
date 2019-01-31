@@ -10,18 +10,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PopoverComponent } from '../components/popover/popover';
 import { ShopsComponent } from '../components/shops/shops';
+import { SelectSearchableModule } from 'ionic-select-searchable';
 
 @NgModule({
   declarations: [
     MyApp,
     PopoverComponent,
     ShopsComponent
-    
-   
   ],
   imports: [
     BrowserModule,
     StarRatingModule,
+    SelectSearchableModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -29,12 +29,11 @@ import { ShopsComponent } from '../components/shops/shops';
     MyApp,
     PopoverComponent,
     ShopsComponent
-    
-    
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    SelectSearchableModule,
     Geolocation,
     LaunchNavigator,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

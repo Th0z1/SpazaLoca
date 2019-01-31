@@ -43,10 +43,10 @@ isUserLoggedIn: any = false;
 
         if(snapshot.val().typeOfUser == 'customer'){
           this.isUserLoggedIn = true;
-          this.navCtrl.setRoot('FeedPage');
+          this.navCtrl.setRoot('HomePage');
         }else if(snapshot.val().typeOfUser == 'Owner'){
           this.isUserLoggedIn = true;
-          this.navCtrl.setRoot('MyStoresPage');
+          this.navCtrl.setRoot('HomePage');
         }
       });
       
