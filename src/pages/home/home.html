@@ -13,12 +13,12 @@
         <ion-row>
 
             <ion-col col->
-                <ion-searchbar (ionInput)="getItems($event)" autocomplete="on">
+                <ion-searchbar [(ngModel)] = "selectedItem" (ionInput)="getItems($event)" autocomplete="on">
             
                 </ion-searchbar>
             </ion-col>
           <ion-col col-2>
-    <button ion-button icon-only  clear medium (click) = "profile();" style="border-left: 1px solid gray">
+    <button ion-button icon-only  clear medium (click) = "contributions();" style="border-left: 1px solid gray">
       <ion-icon ios="ios-person" md="md-person"></ion-icon>
     </button>
   </ion-col>
@@ -39,7 +39,7 @@
 
 
 <ion-content >
-  <ion-list *ngIf="show == true">
+  <ion-list *ngIf="show">
     <ion-item *ngFor = "let item of searchItems" (click) = "userSearch(item)">
       {{item}}
     </ion-item>
@@ -64,9 +64,9 @@
   
     <ion-item color="lightt">
       <!-- <ion-icon name="football" item-start large></ion-icon> -->
-      <h1 text-center>{{spaza.spazaName}}</h1>
-      <h2>{{spaza.cityName}}</h2>
-      <p>Street : {{spaza.streetName}}</p>
+      <h1 text-center>{{spaza?.spazaName}}</h1>
+      <h2>{{spaza?.cityName}}</h2>
+      <p>Street : {{spaza?.streetName}}</p>
       <!-- <p>11 N. Way St, Madison, WI 53703</p> -->
     </ion-item>
   

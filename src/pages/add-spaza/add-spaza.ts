@@ -9,7 +9,7 @@ import { Geolocation } from '@ionic-native/geolocation';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-//declare var firebase;
+declare var firebase;
 
 @IonicPage()
 @Component({
@@ -120,7 +120,7 @@ person : FormGroup;
     });
   }*/
 
-  addSpaza(latitude_coord: number , longitude_coord : number){
+  addSpaza(latitude_coord, longitude_coord){
     // this.navCtrl.push('MyStoresPage',{variable:this.spazaName,namespaza:this.city,cityNum:this.streetName});
     // // this.arrData=[];
     // console.log(this.spazaName);
@@ -132,18 +132,18 @@ person : FormGroup;
     this.mySpazas.cityName=this.city;
     this.mySpazas.streetName=this.streetName;*/
 
-    // var currentUser = firebase.auth().currentUser;
-    // var database=firebase.database();
-    // database.ref("/users/"+currentUser.uid+"/mySpazas/").push({
-    //   //Email:this.spazaShop.value.email,
-    //   spazaName: this.person.value.namespaza,
-    //   cityName: this.person.value.cityNum,
-    //   streetName: this.person.value.street,
-    //   latitude_coord: latitude_coord,
-    //   longitude_coord: longitude_coord
-    // }).then( result =>{
-    //   this.navCtrl.setRoot("MyStoresPage");
-    // });
+    var currentUser = firebase.auth().currentUser;
+    var database=firebase.database();
+    database.ref("/users/"+currentUser.uid+"/mySpazas/").push({
+      //Email:this.spazaShop.value.email,
+      spazaName: this.person.value.namespaza,
+      cityName: this.person.value.cityNum,
+      streetName: this.person.value.street,
+      latitude_coord: latitude_coord,
+      longitude_coord: longitude_coord
+    }).then( result =>{
+      this.navCtrl.setRoot("MyStoresPage");
+    });
   }
 
   showConfirm(){
@@ -179,9 +179,7 @@ person : FormGroup;
       console.log('Resp =>>>'+resp);
       console.log(resp);
       this.addSpaza(resp.coords.latitude,resp.coords.longitude);
-      /*this.mySpazas.latitude_coord = resp.coords.latitude;
-      this.mySpazas.longitude_coord = resp.coords.longitude;*/
-      
+      //this.addSpaza("-25.5476061","28.0981053");
      }).catch((error) => {
        console.log('Error getting location', error);
      });

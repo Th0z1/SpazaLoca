@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
@@ -28,7 +28,7 @@ export class HomePage {
   searchString = null;
   items =[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private launchNavigator: LaunchNavigator, private altCtrl: AlertController, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, private loadingCtrl: LoadingController ,public navParams: NavParams, private launchNavigator: LaunchNavigator, private altCtrl: AlertController, private geolocation: Geolocation) {
   }
 
   ionViewDidLoad() {
@@ -38,6 +38,7 @@ export class HomePage {
 
   getItems(ev: any) {
     this.show = true;
+    let tempSpazaList = this.allSpazasList;
     // Reset items back to all of the items
     this.initializeItems();
 
@@ -48,8 +49,12 @@ export class HomePage {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.searchItems = this.searchItems.filter((item) => {
+        console.log("Item "+ this.searchItems);
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
+    }else{
+      this.show = false;
+      this.getAllSpazas();
     }
   }
 
@@ -69,17 +74,28 @@ export class HomePage {
   }
 
   userSearch( selectedItem : string/*event :{component: SelectSearchableComponent, value: any}*/){
-    console.log(event);
+    console.log(selectedItem);
     if(selectedItem != null && selectedItem != ''){
-      let tempSpazaList = this.spazaListCategory;
+      let tempSpazaList = this.allSpazasList;
       this.allSpazasList = [];
       
-      for(let index = 0; index < this.allSpazasList.length; index++){
-        if(tempSpazaList[index].spazaName == selectedItem ){
-          this.allSpazasList.push(tempSpazaList[index])
+      // for(let index = 0; index <= tempSpazaList.length; index++){
+        console.log("Inside Loop") 
+        tempSpazaList.forEach(element => {
+          console.log(element.spazaName)
+          if(element.spazaName === selectedItem){
+            this.allSpazasList.push(element)
+          }
+        });
+        console.log(this.allSpazasList);
+        // console.log(tempSpazaList[index].spazaName);
+        // if(tempSpazaList[index].spazaName.toLowerCase() == selectedItem.toLowerCase() ){
+        //   console.log(this.allSpazasList)
+        //   this.allSpazasList.push(tempSpazaList[index])
 
-        }
-      }
+        // }
+      // }
+      console.log(this.allSpazasList)
       this.show = false;
     }
   }
@@ -96,6 +112,13 @@ export class HomePage {
   }
 
   getAllSpazas(){
+    let loader = this.loadingCtrl.create({
+      spinner: "ios",
+      content:"Loading Please Wait...",
+      duration:5000
+    });
+    loader.present();
+    this.allSpazasList = [];
     // Array<{spazaName: string, latlog: any ,spazaIndex: number}>
 
     var mySpazasRef;
@@ -122,7 +145,7 @@ export class HomePage {
               streetName : element.val().streetName,
             };
             
-            this.searchItems.push(theSpaza.spazaName)
+            // this.searchItems.push(theSpaza.spazaName)
             this.allSpazasList.push(theSpaza);
             console.log(element)
               
@@ -153,6 +176,7 @@ export class HomePage {
           });
         })
         this.spazaListCategory = this.allSpazasList;
+        loader.dismiss();
         // this.initializeItems();
       });
   }
@@ -201,6 +225,9 @@ export class HomePage {
       //this.showMap(resp.coords.latitude, resp.coords.longitude);
 
       //this.getAllSpazas({userCoords:{latitude:resp.coords.latitude,longitude: resp.coords.longitude}});    // --> Show all spazas on a map
+     }, error =>{
+       console.log("Error");
+       this.showPopup("Oops! Something Went Wrong","Please turn on your location.<br>Or check your network connetion.")
      })/*.catch((error) => {
       const alert = this.altCtrl.create({
         title: 'We Couldn\'t Get Your Location!',
@@ -213,6 +240,22 @@ export class HomePage {
      });*/
 
      
+  }
+
+  showPopup(title, text) {
+    let alert = this.altCtrl.create({
+      title: "<u>" + title + "</u>",
+      subTitle: text,
+      buttons: [
+        {
+          text: 'OK',
+          handler: data => {
+           
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

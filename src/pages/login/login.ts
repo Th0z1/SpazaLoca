@@ -29,7 +29,7 @@ isUserLoggedIn: any = false;
   login({value, valid}:{value:any,valid}){
     let loader = this.loadingCtrl.create({
       spinner: "ios",
-      content:"Please Wait!",
+      content:"Singing In. Please Wait!",
       duration:5000
    });
   
@@ -43,9 +43,11 @@ isUserLoggedIn: any = false;
 
         if(snapshot.val().typeOfUser == 'customer'){
           this.isUserLoggedIn = true;
+          loader.dismiss();
           this.navCtrl.setRoot('HomePage');
         }else if(snapshot.val().typeOfUser == 'Owner'){
           this.isUserLoggedIn = true;
+          loader.dismiss();
           this.navCtrl.setRoot('HomePage');
         }
       });

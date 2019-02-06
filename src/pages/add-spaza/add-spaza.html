@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="new">
-    <!-- <ion-title>addSpaza</ion-title> -->
+    <ion-title text-center>Add New Spaza</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -49,7 +49,7 @@
       </div>
 
     <div class="butt">
-    <button ion-button round color="new" (click)="showConfirm()">Add</button>
+    <button ion-button round color="new" (click)="showConfirm()" [disabled]="!person.valid">Add</button>
     </div>
   </form>
 </ion-content>
