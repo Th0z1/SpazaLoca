@@ -41,7 +41,7 @@ isUserLoggedIn: any = false;
 
       firebase.database().ref('/users/'+user.user.uid).once('value', (snapshot) => {
 
-        if(snapshot.val().typeOfUser == 'customer'){
+        if(snapshot.val().typeOfUser == 'Customer'){
           this.isUserLoggedIn = true;
           loader.dismiss();
           this.navCtrl.setRoot('HomePage');
