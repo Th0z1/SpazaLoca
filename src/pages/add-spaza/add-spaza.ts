@@ -179,7 +179,7 @@ person : FormGroup;
       console.log('Resp =>>>'+resp);
       console.log(resp);
       this.addSpaza(resp.coords.latitude,resp.coords.longitude);
-      //this.addSpaza("-25.5476061","28.0981053");
+      //this.addSpaza("-27.7705671","30.0713911");
      }).catch((error) => {
        console.log('Error getting location', error);
      });

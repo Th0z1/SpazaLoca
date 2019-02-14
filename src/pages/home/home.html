@@ -59,26 +59,33 @@
       </ion-fab> -->
 
   <ion-card *ngFor = "let spaza of allSpazasList" color="lightt">
-    <img src="../../assets/imgs/store.png" style="height: 15em;width: 15em;">
-    
+    <!-- <img src="../../assets/imgs/store.png" style="height: 15em;width: 15em;"> -->
+    <img style="height: 8em; width: 8em; margin-left: 32%;" src="../../assets/imgs/shop2.png"/>
   
-    <ion-item color="lightt">
-      <!-- <ion-icon name="football" item-start large></ion-icon> -->
+    <!-- <ion-item color="lightt">
       <h1 text-center>{{spaza?.spazaName}}</h1>
       <h2>{{spaza?.cityName}}</h2>
       <p>Street : {{spaza?.streetName}}</p>
-      <!-- <p>11 N. Way St, Madison, WI 53703</p> -->
-    </ion-item>
-  
-    <!-- <ion-item color="lightt">
-      <ion-icon name="wine" item-start large ></ion-icon>
-      <h2>Institute of Fine Cocktails</h2>
-      <p>14 S. Hop Avenue, Madison, WI 53703</p>
     </ion-item> -->
+
+    <ion-card-content>
+        
+      
+      <ion-card-title text-center style="color: black;">
+        {{spaza?.spazaName}}
+      </ion-card-title>
+   
+      <p class="pp">
+        Township : {{spaza?.cityName}} 
+      </p>
+      <p class="pp">
+        Street Name : {{spaza?.streetName}}
+      </p>
+
+     
+    </ion-card-content>
   
     <ion-item (click) = "getCurrentCoords(spaza)" color="lightt" >
-      <!-- <span item-start>18 min</span>
-      <span item-start>(2.6 mi)</span> -->
       <button ion-button icon-start clear item-end>
         <ion-icon name="navigate"></ion-icon>
         Go

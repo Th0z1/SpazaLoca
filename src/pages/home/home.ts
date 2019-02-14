@@ -54,6 +54,7 @@ export class HomePage {
       })
     }else{
       this.show = false;
+      this.searchItems = [];
       this.getAllSpazas();
     }
   }

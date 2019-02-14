@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -21,7 +22,7 @@ spazaShop:FormGroup;
       name: ['',Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.minLength(4),Validators.maxLength(30),Validators.required])],
       surname : [,Validators.compose([Validators.pattern('[a-zA-Z ]*'),Validators.minLength(4),Validators.maxLength(30),Validators.required])],
       gender: ['',Validators.required],
-      typeOfUser: ['',Validators.required],
+      // typeOfUser: ['',Validators.required],
       email: ['',Validators.compose([ Validators.pattern('^[a-zA-Z_.+-]+@[a-zA-Z-]+.[a-zA-Z0-9-.]+$'),Validators.required])],
       password: ['',Validators.compose([ Validators.minLength(6),Validators.maxLength(12),Validators.required])],
       //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
@@ -50,10 +51,10 @@ spazaShop:FormGroup;
     
       
 
-      if(this.spazaShop.value.typeOfUser == "customer"){
+      /*if(this.spazaShop.value.typeOfUser == "customer"){
         firebase.database().ref('/users/' + (data.user.uid)).set(
           {
-            Email:this.spazaShop.value.email,
+            email:this.spazaShop.value.email,
             name:this.spazaShop.value.name,
             surname:this.spazaShop.value.surname,
             gender:this.spazaShop.value.gender,
@@ -66,7 +67,7 @@ spazaShop:FormGroup;
       }else if(this.spazaShop.value.typeOfUser == "Owner"){
         firebase.database().ref('/users/' + (data.user.uid)).set(
           {
-            Email:this.spazaShop.value.email,
+            email:this.spazaShop.value.email,
             name:this.spazaShop.value.name,
             surname:this.spazaShop.value.surname,
             gender:this.spazaShop.value.gender,
@@ -77,9 +78,21 @@ spazaShop:FormGroup;
           this.navCtrl.push("MyStoresPage");
           this.spazaShop.reset();
         });
-      }
+      }*/
     
-      
+      firebase.database().ref('/users/' + (data.user.uid)).set(
+        {
+          email: this.spazaShop.value.email,
+          name:this.spazaShop.value.name,
+          surname:this.spazaShop.value.surname,
+          gender:this.spazaShop.value.gender,
+          typeOfUser:'Customer'
+          //typeOfUser:'Admin'
+        }
+      ).then(result => {
+        this.navCtrl.push("HomePage");
+        this.spazaShop.reset();
+      });
       
     })
     }
