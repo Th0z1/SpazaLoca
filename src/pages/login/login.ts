@@ -49,6 +49,10 @@ isUserLoggedIn: any = false;
           this.isUserLoggedIn = true;
           loader.dismiss();
           this.navCtrl.setRoot('HomePage');
+        }else if(snapshot.val().typeOfUser == 'Admin'){
+          this.isUserLoggedIn = true;
+          loader.dismiss();
+          this.navCtrl.setRoot('HomePage');
         }
       });
       
